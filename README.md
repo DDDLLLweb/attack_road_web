@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4ab7b06f7771b73639545b50044645acb3695530
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -2443,6 +2446,9 @@ In the future, we might start automatically compiling incompatible third-party m
 ## Something Missing?
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
+<<<<<<< HEAD
 =======
 # attack-road
 >>>>>>> d5c4b34172589f8bfff59133f9080e3c507061e4
+=======
+>>>>>>> 4ab7b06f7771b73639545b50044645acb3695530
