@@ -12,7 +12,7 @@ ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <Switch>
-                <Route exact path="/" render={() => <Redirect to="/app/dashboard/index" />} />
+                <Route exact path="/" render={() => <Redirect to="/app" />} />
                 <Route path="/app" component={App} />
                 <Route path="/login" component={Login} />
             </Switch>

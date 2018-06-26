@@ -10,11 +10,20 @@ import './index.less';
 
 const FormItem = Form.Item;
 
-const LoginForm = ({ dispatch, form: {
+const LoginForm = ({ dispatch,app, form: {
     getFieldDecorator,
     validateFieldsAndScroll,
     getFieldsValue,
 } }) => {
+    const loginCheck = () => {
+        console.log('logincheck run---->',app);
+        // dispatch({
+        //     type: 
+        // })
+    }
+
+    loginCheck();
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         // const data = getFieldsValue();
@@ -27,9 +36,9 @@ const LoginForm = ({ dispatch, form: {
                     })
                  });
             }
-        })
-            
+        });
     };
+
     return (
         <Form onSubmit={handleSubmit} className="loginForm">
             <FormItem>
@@ -61,4 +70,4 @@ const LoginForm = ({ dispatch, form: {
     );
 }
 
-export default connect(({ dispatch }) => ({ dispatch }))(Form.create()(LoginForm));
+export default connect(({ dispatch,app}) => ({ dispatch,app }))(Form.create()(LoginForm));
