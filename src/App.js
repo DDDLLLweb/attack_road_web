@@ -1,10 +1,11 @@
 import React,{ Component } from 'react';
-import { Layout,Breadcrumb,Button} from 'antd';
+import { Layout} from 'antd';
 import { queryXsrf,API_LOGINOUT } from './redux/action/app';
 import { connect } from 'react-redux';
 import './App.less';
-import {Dashboard} from './components/'
-const { Content, Footer ,Header,Sider} = Layout;
+import './style/index.less';
+import {HeaderCustom,MainContent,SiderMenu} from './components/';
+const { Content, Footer ,Sider} = Layout;
 class App extends Component {
     constructor(props) {
         super(props);
@@ -31,7 +32,7 @@ class App extends Component {
         this.setState({ collapsed });
     }
     render() {
-        
+        const { auth} = this.props;
         return (
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider
@@ -40,20 +41,12 @@ class App extends Component {
                 onCollapse={this.onCollapse}
                 >
                 <div className="logo" />
-                <Dashboard inlineCollapsed={this.state.collapsed} />
+                <SiderMenu inlineCollapsed={this.state.collapsed} />
                 </Sider>
                 <Layout>
-                <Header style={{ background: '#fff', padding: 0 }}>
-                    <Button onClick={() => this.loginOut()}>登出</Button>
-                </Header>
+                <HeaderCustom toggle={this.toggle} collapsed={this.state.collapsed} user={ {auth}|| {}} />
                 <Content style={{ margin: '0 16px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>User</Breadcrumb.Item>
-                    <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                    Bill is a cat.
-                    </div>
+                    <MainContent />
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
                     Ant Design ©2016 Created by Ant UED

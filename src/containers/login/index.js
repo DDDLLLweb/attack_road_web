@@ -10,37 +10,37 @@ import './index.less';
 
 const FormItem = Form.Item;
 
-const LoginForm = ({ dispatch,app, form: {
-    getFieldDecorator,
-    validateFieldsAndScroll,
-    getFieldsValue,
-} }) => {
-    const loginCheck = () => {
-        console.log('logincheck run---->',app);
-        // dispatch({
-        //     type: 
-        // })
-    }
+class LoginForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
 
-    loginCheck();
-    
-    const handleSubmit = (e) => {
+        }
+    }
+    componentDidMount() {
+    //    this.props.form.validateFields();
+    const {app} = this.props;
+    console.log('loginform--->',app)
+    }
+    handleSubmit = (e) => {
         e.preventDefault();
-        // const data = getFieldsValue();
-        validateFieldsAndScroll((err, data)=>{
-            if(!err) {
+        const {dispatch} = this.props;
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
                 networkUtils.csrf().then(() => {
                     dispatch({
                         type: DO_LOGIN,
-                        payload: data
+                        payload: values
                     })
-                 });
+                });
             }
         });
     };
 
-    return (
-        <Form onSubmit={handleSubmit} className="loginForm">
+    render() {
+        const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+        return (
+        <Form onSubmit={this.handleSubmit} className="loginForm">
             <FormItem>
                 {getFieldDecorator('username', {
                     rules: [{ required: true, message: '请输入用户名!' }],
@@ -67,7 +67,7 @@ const LoginForm = ({ dispatch,app, form: {
                     </Button>
             </FormItem>
         </Form>
-    );
+    )
+  }
 }
-
 export default connect(({ dispatch,app}) => ({ dispatch,app }))(Form.create()(LoginForm));

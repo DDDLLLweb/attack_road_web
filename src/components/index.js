@@ -1,5 +1,8 @@
-import Dashboard from './dashboard/';
-
+import SiderMenu from './dashboard/';
+import HeaderCustom from './HeaderCustom';
+import MainContent from './maincontent';
 export {
-    Dashboard,
+    SiderMenu,
+    HeaderCustom,
+    MainContent
 }

@@ -4,7 +4,7 @@ import { Menu, Icon } from 'antd';
 const { SubMenu } = Menu;
 
 
-class Dashboard extends React.Component {
+class SiderMenu extends React.Component {
 
     render() {
         const props = this.props;
@@ -43,4 +43,4 @@ class Dashboard extends React.Component {
     }
 }
 
-export default connect( () => ({ }))(Dashboard);
+export default connect( () => ({ }))(SiderMenu);

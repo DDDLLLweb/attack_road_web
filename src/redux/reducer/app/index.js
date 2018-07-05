@@ -3,7 +3,6 @@ import { API_XSRF, STATE_PRINCIPAL } from '../../action/app/';
 
 const app = (state = {}, {type,payload}) => {
     switch (type) {
-    
         case API_XSRF:
             return {
                 ...state
