@@ -22,7 +22,6 @@ export function* doLogin({payload}) {
 }
 
 export function* doLoginOut() {
-  yield put(push('/login'));
   const data = yield call(appService.loginOut);
     if(data.success) {
       yield put(push('/login'));
