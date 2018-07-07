@@ -26,6 +26,10 @@ class LoginForm extends React.Component {
         const { user } = app;
         if(user) {
             dispatch(push('/app'));
+        } else {
+            networkUtils.csrf().then(function() {
+                console.log('get csrf');
+            });
         }
     }
     handleSubmit = (e) => {
@@ -33,12 +37,12 @@ class LoginForm extends React.Component {
         const {dispatch} = this.props;
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                networkUtils.csrf().then(() => {
+                // networkUtils.csrf().then(() => {
                     dispatch({
                         type: DO_LOGIN,
                         payload: values
                     })
-                });
+                // });
             }
         });
     };

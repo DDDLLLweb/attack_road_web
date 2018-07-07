@@ -1,6 +1,5 @@
 import React,{ Component } from 'react';
 import { Layout} from 'antd';
-import { queryXsrf,API_LOGINOUT } from './redux/action/app';
 import { connect } from 'react-redux';
 import './App.less';
 import './style/index.less';
@@ -13,21 +12,11 @@ class App extends Component {
             collapsed: false,
         }
     }
-    componentWillMount () {
-        // const { dispatch } = this.props;
-        // queryXsrf(dispatch);
-    }
 
     componentDidMount () {
        
     }
 
-    loginOut = () => {
-        const { dispatch } = this.props;
-        dispatch({
-            type: API_LOGINOUT,
-        })
-    }
     onCollapse = (collapsed) => {
         this.setState({ collapsed });
     }

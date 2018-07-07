@@ -2,9 +2,15 @@ import React from 'react';
 // import { connect } from 'react-redux';
 import { Row, Col, Card, Timeline, Icon,Breadcrumb } from 'antd';
 import EchartsProjects from './EchartsProjects';
+import { queryXsrf } from '../../redux/action/app';
 import EchartsViews from './EchartsViews';
 import b1 from '../../style/imgs/b1.jpg';
+import { connect } from 'react-redux';
 class MainContent extends React.Component {
+    componentWillMount () {
+        const { dispatch } = this.props;
+        queryXsrf(dispatch);
+    }
     render() {
         return (
             <div className="gutter-example button-demo">
@@ -168,4 +174,4 @@ class MainContent extends React.Component {
         )
     }
 }
-export default MainContent;
+export default connect(({ dispatch,app}) => ({ dispatch,app }))(MainContent);

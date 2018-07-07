@@ -1,6 +1,11 @@
 
-import { API_XSRF, STATE_PRINCIPAL } from '../../action/app/';
+import { API_XSRF, STATE_PRINCIPAL,  API_LOGINOUT} from '../../action/app/';
 
+const handleLogOut = (state) => {
+    const { app } = state
+    const newApp = Object.assign({},app,{user:null})
+    return Object.assign({},state,newApp);
+}  
 const app = (state = {}, {type,payload}) => {
     switch (type) {
         case API_XSRF:
@@ -12,6 +17,8 @@ const app = (state = {}, {type,payload}) => {
                 ...state,
                 ...payload
             }
+        case API_LOGINOUT: 
+            return handleLogOut(state);
         default:
             return { ...state };
     }
