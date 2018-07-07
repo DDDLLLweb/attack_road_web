@@ -14,8 +14,8 @@ class App extends Component {
         }
     }
     componentWillMount () {
-        const { dispatch } = this.props;
-        queryXsrf(dispatch);
+        // const { dispatch } = this.props;
+        // queryXsrf(dispatch);
     }
 
     componentDidMount () {

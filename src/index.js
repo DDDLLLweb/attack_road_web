@@ -13,8 +13,6 @@ store.subscribe(() =>
   console.log(store.getState())
 );
 
-const {app} = store
-console.log('app---->',app);
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>

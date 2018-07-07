@@ -1,8 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { API_PRINCIPAL,STATE_PRINCIPAL, DO_LOGIN, API_LOGINOUT} from '../../action/app'
 import * as appService from '../../../service/app/app'
-
-
 import { push } from 'react-router-redux'
 
 export function* principal() {
@@ -24,6 +22,7 @@ export function* doLogin({payload}) {
 }
 
 export function* doLoginOut() {
+  yield put(push('/login'));
   const data = yield call(appService.loginOut);
     if(data.success) {
       yield put(push('/login'));

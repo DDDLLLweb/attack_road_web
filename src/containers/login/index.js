@@ -6,6 +6,7 @@ import { DO_LOGIN } from '../../redux/action/app' ;
 import { networkUtils } from '../../utils';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux'
 import './index.less';
 
 const FormItem = Form.Item;
@@ -17,10 +18,15 @@ class LoginForm extends React.Component {
 
         }
     }
+    componentWillMount() {
+       
+    }
     componentDidMount() {
-    //    this.props.form.validateFields();
-    const {app} = this.props;
-    console.log('loginform--->',app)
+        const {app, dispatch} = this.props;
+        const { user } = app;
+        if(user) {
+            dispatch(push('/app'));
+        }
     }
     handleSubmit = (e) => {
         e.preventDefault();

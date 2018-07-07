@@ -18,10 +18,10 @@ export const receiveData = (data, category) => ({
 });
 
 export const queryXsrf = (dispatch) => {
-    networkUtils.csrf().then(() => {
-       console.log('获取csrf')
-       dispatch ({
-        type: API_PRINCIPAL,
-        })
-    });
+    // networkUtils.csrf().then(() => {
+    //    console.log('获取csrf')
+    //    dispatch ({
+    //     type: API_PRINCIPAL,
+    //     })
+    // });
 }
