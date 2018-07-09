@@ -59,4 +59,4 @@ class App extends Component {
 //     dispatch
 //   );
 
-export default connect()(App);
+export default App;
