@@ -6,22 +6,21 @@ import configureStore,{ history } from './redux/store'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import LoginForm from './containers/login/';
 import App from './App';
+import { networkUtils } from './utils';
 
 const store = configureStore();
 
-store.subscribe(() =>
-  console.log(store.getState())
-);
-
-ReactDOM.render(
-    <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <Switch>
-                <Route exact path="/" render={() => <Redirect to="/app" />} />
-                <Route path="/app" component={App} />
-                <Route path="/login" component={LoginForm} />
-            </Switch>
-        </ConnectedRouter>
-    </Provider>,
-    document.getElementById('root')
-);
+networkUtils.csrf().then(function() {
+    ReactDOM.render(
+        <Provider store={store}>
+            <ConnectedRouter history={history}>
+                <Switch>
+                    <Route exact path="/" render={() => <Redirect to="/app" />} />
+                    <Route path="/app" component={App} />
+                    <Route path="/login" component={LoginForm} />
+                </Switch>
+            </ConnectedRouter>
+        </Provider>,
+        document.getElementById('root')
+    );
+});

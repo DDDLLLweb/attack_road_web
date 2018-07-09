@@ -8,7 +8,6 @@ class SiderMenu extends React.Component {
 
     render() {
         const props = this.props;
-        console.log(props)
         return (
                 <Menu theme="dark" defaultSelectedKeys={['1']} {...props} mode="inline">
                     <Menu.Item key="1">

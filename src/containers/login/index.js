@@ -27,9 +27,9 @@ class LoginForm extends React.Component {
         if(user) {
             dispatch(push('/app'));
         } else {
-            networkUtils.csrf().then(function() {
-                console.log('get csrf');
-            });
+            // networkUtils.csrf().then(function() {
+            //     console.log('get csrf');
+            // });
         }
     }
     handleSubmit = (e) => {
