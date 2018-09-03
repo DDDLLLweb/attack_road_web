@@ -1,45 +1,78 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Menu, Icon } from 'antd';
-const { SubMenu } = Menu;
+import { config,networkUtils, dataUtil } from '../../utils';
+import { Menu, Icon, Button} from 'antd';
+import {DO_GETMENU } from '../../redux/action/app';
+import { Link } from 'react-router-dom'
+const { request } = networkUtils;
+const { api } = config;
+const { basic } = api;
+const { userMenu } = basic;
 
-
+const SubMenu = Menu.SubMenu;
 class SiderMenu extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            menuData:[],
+        }
+    }
+    componentDidMount = () => {
+        networkUtils.request({
+            url: userMenu,
+            method: 'get',
+          }).then((data) => {
+            if (data.success) {
+                dataUtil.arrayToTree(data.data)
+                let menuTree = dataUtil.arrayToTree(data.data.filter(_ => _.menuType !== 'C'), 'menuId', 'upperId')
+                this.setState({
+                    menuData: menuTree
+                });
+            } else {
+              throw data.message
+            }
+        });
+    }
+     // 递归生成菜单
+    getMenus = (menuData,inlineCollapsed) =>{
+        console.log(menuData)
+        return menuData.map(((item) => {
+            if (item.children) {
+              return (
+                <SubMenu
+                  key={item.menuId}
+                  title={<span>
+                    {item.menuIco && <Icon type={item.menuIco} />}
+                    {!inlineCollapsed && item.menuLabel}
+                  </span>}
+                >
+                  {this.getMenus(item.children)}
+                </SubMenu>
+              )
+            }
+            console.log('item',item)
+            return (
+              <Menu.Item key={item.menuId}>
+            {/* 路由跳转 */}
+                <Link to={item.menuUri}>
+                  {item.menuIco && <Icon type={item.menuIco} />}
+                  {!inlineCollapsed && item.menuLabel}
+                </Link>
+              </Menu.Item>
+            )
+          }))
+    }
     render() {
-        const props = this.props;
+        const {inlineCollapsed} =this.props;
+        const {menuData} = this.state;
+        const menuItems = this.getMenus(menuData,inlineCollapsed);
+        console.log(this.props.inlineCollapsed)
         return (
-                <Menu theme="dark" defaultSelectedKeys={['1']} {...props} mode="inline">
-                    <Menu.Item key="1">
-                    <Icon type="pie-chart" />
-                    <span>Option 1</span>
-                    </Menu.Item>
-                    <Menu.Item key="2">
-                    <Icon type="desktop" />
-                    <span>Option 2</span>
-                    </Menu.Item>
-                    <SubMenu
-                    key="sub1"
-                    title={<span><Icon type="user" /><span>User</span></span>}
-                    >
-                    <Menu.Item key="3">Tom</Menu.Item>
-                    <Menu.Item key="4">Bill</Menu.Item>
-                    <Menu.Item key="5">Alex</Menu.Item>
-                    </SubMenu>
-                    <SubMenu
-                    key="sub2"
-                    title={<span><Icon type="team" /><span>Team</span></span>}
-                    >
-                    <Menu.Item key="6">Team 1</Menu.Item>
-                    <Menu.Item key="8">Team 2</Menu.Item>
-                    </SubMenu>
-                    <Menu.Item key="9">
-                    <Icon type="file" />
-                    <span>File</span>
-                    </Menu.Item>
-                </Menu>
+            <Menu theme="dark" inlineCollapsed={inlineCollapsed} defaultSelectedKeys={['1']} mode="inline">
+                {menuItems}
+            </Menu>
         )
     }
 }
 
-export default connect( () => ({ }))(SiderMenu);
+export default connect(({dispatch,app}) => ({ dispatch,app }))(SiderMenu);

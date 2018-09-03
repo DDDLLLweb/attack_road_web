@@ -3,7 +3,7 @@ import { config, networkUtils } from '../../utils';
 const { request } = networkUtils;
 const { api } = config;
 const { basic } = api;
-const { principal, userLogin,userLogout } = basic
+const { principal, userLogin,userLogout,userMenu } = basic
 
 export async function getPrincipal() {
   return request({
@@ -24,4 +24,11 @@ export async function loginOut() {
     url: userLogout,
     method: 'post',
   });
+}
+
+export async function getMenuItem() {
+  return request({
+      url: userMenu,
+      method:'get',
+  })
 }

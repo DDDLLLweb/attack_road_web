@@ -19,12 +19,13 @@ export default {
       csrf: '/sec/xsrf', // CSRF检查
       userLogin: '/sec/login', // 登录
       userLogout: '/sec/logout', // 退出
+      userMenu:'/sec/menus',//获取菜单
       captcha: '/sec/captcha', // 验证码
       principal: '/sec/principal', // 登录用户上下文
       resetPW: 'api/ui/password/update',
     },
     app: {
-      menu: '/api/ui/menus',
+      menu: '/api/sec/menus',
     },
   },
 }

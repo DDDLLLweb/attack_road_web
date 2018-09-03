@@ -6,7 +6,8 @@ export const RECEIVE_DATA = 'RECEIVE_DATA';
 export const API_XSRF = 'API_XSRF';
 export const API_PRINCIPAL = 'API_PRINCIPAL';
 export const API_LOGINOUT = 'API_LOGINOUT';
-
+export const DO_GETMENU = 'DO_GETMENU';
+export const STATE_MENU = 'STATE_MENU';
 export const STATE_PRINCIPAL = 'STATE_PRINCIPAL';
 export const DO_LOGIN = 'DO_LOGIN';
 

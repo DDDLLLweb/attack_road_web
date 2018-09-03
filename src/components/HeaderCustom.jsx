@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Menu, Icon, Badge,Layout} from 'antd';
 import { connect } from 'react-redux';
 import screenfull from 'screenfull';
-import {API_LOGINOUT } from '../redux/action/app';
+import {API_LOGINOUT } from '../redux/action/app/index';
 const {Header} = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -60,4 +60,4 @@ class HeaderCustom extends Component{
         )
     }
 }
-export default connect( () => ({ }))(HeaderCustom);
+export default connect(({dispatch}) => ({ dispatch }))(HeaderCustom);

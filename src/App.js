@@ -18,10 +18,12 @@ class App extends Component {
     }
 
     onCollapse = (collapsed) => {
-        this.setState({ collapsed });
+        this.setState({
+            collapsed
+        });
     }
     render() {
-        const { auth} = this.props;
+        const { auth,app} = this.props;
         return (
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider
@@ -30,7 +32,7 @@ class App extends Component {
                 onCollapse={this.onCollapse}
                 >
                 <div className="logo" />
-                <SiderMenu inlineCollapsed={this.state.collapsed} />
+                <SiderMenu inlineCollapsed={this.state.collapsed} theme="dark" />
                 </Sider>
                 <Layout>
                 <HeaderCustom toggle={this.toggle} collapsed={this.state.collapsed} user={ {auth}|| {}} />
@@ -59,4 +61,4 @@ class App extends Component {
 //     dispatch
 //   );
 
-export default App;
+export default connect(({dispatch,app}) => ({ dispatch,app }))(App);
