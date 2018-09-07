@@ -1,20 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { config,networkUtils, dataUtil } from '../../utils';
-import { Menu, Icon, Button} from 'antd';
-import {DO_GETMENU } from '../../redux/action/app';
-import { Link } from 'react-router-dom'
-const { request } = networkUtils;
+import { Menu, Icon} from 'antd';
+import { push } from 'react-router-redux'
+import {withRouter,Link} from "react-router-dom";
+
 const { api } = config;
 const { basic } = api;
 const { userMenu } = basic;
 
 const SubMenu = Menu.SubMenu;
 class SiderMenu extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.state = {
             menuData:[],
+            current:'',
         }
     }
     componentDidMount = () => {
@@ -53,26 +54,32 @@ class SiderMenu extends React.Component {
             console.log('item',item)
             return (
               <Menu.Item key={item.menuId}>
+              <Link to={`/app${item.menuUri}`}>
             {/* 路由跳转 */}
-                <Link to={item.menuUri}>
                   {item.menuIco && <Icon type={item.menuIco} />}
                   {!inlineCollapsed && item.menuLabel}
-                </Link>
+                  </Link>
               </Menu.Item>
             )
           }))
     }
+
+    handleClick = (e) => {
+        console.log('sss',this.props)
+        const {history} = this.props;
+        // history.push(e.key);
+    }
+
     render() {
         const {inlineCollapsed} =this.props;
         const {menuData} = this.state;
         const menuItems = this.getMenus(menuData,inlineCollapsed);
-        console.log(this.props.inlineCollapsed)
         return (
-            <Menu theme="dark" inlineCollapsed={inlineCollapsed} defaultSelectedKeys={['1']} mode="inline">
+            <Menu theme="dark" inlineCollapsed={inlineCollapsed} defaultSelectedKeys={['E00']} mode="inline">
                 {menuItems}
             </Menu>
         )
     }
 }
 
-export default connect(({dispatch,app}) => ({ dispatch,app }))(SiderMenu);
+export default withRouter(connect(({dispatch,app}) => ({ dispatch,app }))(SiderMenu));

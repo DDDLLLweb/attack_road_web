@@ -6,6 +6,7 @@ import { queryXsrf } from '../../redux/action/app';
 import EchartsViews from './EchartsViews';
 import b1 from '../../style/imgs/b1.jpg';
 import { connect } from 'react-redux';
+import {withRouter} from "react-router-dom";
 class MainContent extends React.Component {
     componentWillMount () {
         const { dispatch } = this.props;
@@ -174,4 +175,4 @@ class MainContent extends React.Component {
         )
     }
 }
-export default connect(({ dispatch,app}) => ({ dispatch,app }))(MainContent);
+export default withRouter(connect(({ dispatch,app}) => ({ dispatch,app }))(MainContent));

@@ -1,9 +1,11 @@
 import React,{ Component } from 'react';
 import { Layout} from 'antd';
 import { connect } from 'react-redux';
+import { API_PRINCIPAL } from './redux/action/app' 
 import './App.less';
 import './style/index.less';
 import {HeaderCustom,MainContent,SiderMenu} from './components/';
+import { Route,Switch } from 'react-router-dom';
 const { Content, Footer ,Sider} = Layout;
 class App extends Component {
     constructor(props) {
@@ -14,7 +16,10 @@ class App extends Component {
     }
 
     componentDidMount () {
-       
+       const { dispatch } = this.props;
+        dispatch({
+            type: API_PRINCIPAL
+        })
     }
 
     onCollapse = (collapsed) => {
@@ -23,7 +28,7 @@ class App extends Component {
         });
     }
     render() {
-        const { auth,app} = this.props;
+        const { auth } = this.props;
         return (
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider
@@ -37,7 +42,9 @@ class App extends Component {
                 <Layout>
                 <HeaderCustom toggle={this.toggle} collapsed={this.state.collapsed} user={ {auth}|| {}} />
                 <Content style={{ margin: '0 16px' }}>
-                    <MainContent />
+                    <Switch>
+                        <Route path="/app/dashboard" component={MainContent} />
+                    </Switch>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
                     Ant Design ©2016 Created by Ant UED
