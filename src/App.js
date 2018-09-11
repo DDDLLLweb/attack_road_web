@@ -42,9 +42,7 @@ class App extends Component {
                 <Layout>
                 <HeaderCustom toggle={this.toggle} collapsed={this.state.collapsed} user={ {auth}|| {}} />
                 <Content style={{ margin: '0 16px' }}>
-                    <Switch>
-                        <Route path="/app/dashboard" component={MainContent} />
-                    </Switch>
+                    <MainContent />
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
                     Ant Design ©2016 Created by Ant UED

@@ -7,6 +7,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import LoginForm from './containers/login/';
 import App from './App';
 import { networkUtils } from './utils';
+import { MainContent } from './components/';
+import { routesNode } from './routes';
 
 const store = configureStore();
 
@@ -16,7 +18,11 @@ networkUtils.csrf().then(function() {
             <ConnectedRouter history={history}>
                 <Switch>
                     <Route exact path="/" render={() => <Redirect to="/app" />} />
-                    <Route path="/app" component={App} />
+                    <Route path="/app" component={App}>
+                        {/* <Route path="/dashboard" component={MainContent} />
+                        <Route path="/mqctl/metaq" component={MainContent} /> */}
+                        { routesNode }
+                    </Route>
                     <Route path="/login" component={LoginForm} />
                 </Switch>
             </ConnectedRouter>
