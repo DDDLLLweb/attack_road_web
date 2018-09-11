@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route,} from 'react-router-dom';
-import { MainContent } from './components/';
+import { MainContent } from '../components/';
 const childRoutes = [
     {
       'path':'/dashboard',
@@ -8,7 +8,12 @@ const childRoutes = [
     },
 ];
 
-const routesNode = childRoutes.map((route,index)=>(
-  <Route key={index} path={route.path} component={route.component} />
-));
+const routesNode = () => {
+  return childRoutes.map((route,index)=>(
+    <Route key={index} path={route.path} component={route.component} />
+  ));
+}
 
+export {
+  routesNode
+}

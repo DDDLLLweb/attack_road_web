@@ -7,7 +7,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import LoginForm from './containers/login/';
 import App from './App';
 import { networkUtils } from './utils';
-import { MainContent } from './components/';
+// import { MainContent } from './components/';
 import { routesNode } from './routes';
 
 const store = configureStore();
