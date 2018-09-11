@@ -8,11 +8,9 @@ const childRoutes = [
     },
 ];
 
-const routesNode = () => {
-  return childRoutes.map((route,index)=>(
+const routesNode = childRoutes.map((route,index)=>(
     <Route key={index} path={route.path} component={route.component} />
-  ));
-}
+))
 
 export {
   routesNode
