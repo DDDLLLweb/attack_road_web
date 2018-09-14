@@ -9,7 +9,6 @@ const handleLogOut = (state) => {
 const handleGetMenuItem = (state,payload) => {
     const {app} = state
     const newApp = Object.assign({},app,{menu:{}})
-    console.log(state);
     return Object.assign({},state,newApp)
 } 
 const app = (state = {}, {type,payload}) => {

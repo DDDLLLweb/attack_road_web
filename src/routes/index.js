@@ -1,11 +1,15 @@
 import React from 'react';
-import { Route,} from 'react-router-dom';
-import { MainContent } from '../components/';
-const childRoutes = [
+import { Route } from 'react-router-dom';
+import { MainContent,Metaqtable } from '../components/';
+export const childRoutes = [
     {
-      'path':'/dashboard',
-      'component': MainContent,
+      'path':'/app/dashboard',
+      'component':MainContent,
     },
+    {
+      'path':'/app/mqctl/metaq',
+      'component': Metaqtable,
+    }
 ];
 
 const routesNode = childRoutes.map((route,index)=>(

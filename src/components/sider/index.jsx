@@ -36,7 +36,6 @@ class SiderMenu extends React.Component {
     }
      // 递归生成菜单
     getMenus = (menuData,inlineCollapsed) =>{
-        console.log(menuData)
         return menuData.map(((item) => {
             if (item.children) {
               return (
@@ -51,21 +50,20 @@ class SiderMenu extends React.Component {
                 </SubMenu>
               )
             }
-            console.log('item',item)
+            // console.log('item',item)
             return (
-              <Menu.Item key={item.menuId}>
-              <Link to={`/app${item.menuUri}`}>
-            {/* 路由跳转 */}
-                  {item.menuIco && <Icon type={item.menuIco} />}
-                  {!inlineCollapsed && item.menuLabel}
-                  </Link>
+                <Menu.Item key={item.menuId}>
+                <Link to={`/app${item.menuUri}`}>
+                    {/* 路由跳转 */}
+                    {item.menuIco && <Icon type={item.menuIco} />}
+                    {!inlineCollapsed && item.menuLabel}
+                </Link>
               </Menu.Item>
             )
           }))
     }
 
     handleClick = (e) => {
-        console.log('sss',this.props)
         const {history} = this.props;
         // history.push(e.key);
     }
