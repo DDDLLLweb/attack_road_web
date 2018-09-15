@@ -1,5 +1,5 @@
 body{
-  background: url(../../style/imgs/bk.jpg) no-repeat center;
+  background: url(../../style/imgs/bigback.jpeg) no-repeat center;
   background-size: cover;
 }
 .loginForm{
@@ -7,11 +7,12 @@ body{
   width: 350px;
   padding: 40px;
   border: 1px solid #d9d9d9;
-  border-radius: 5%;
   position: absolute;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+  -moz-box-shadow: 10px 10px 5px #0d2c56; /* 老的 Firefox */
+  box-shadow: 10px 10px 5px #0d2c56;
 }
 .login-form-button {
   width: 60px;
@@ -19,4 +20,13 @@ body{
   float: right;
   margin-right: 20px;
   margin-top: 5px;
+}
+.userphoto {
+  text-align: center
+}
+.captcha {
+  height: 32px;
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 4px;
 }

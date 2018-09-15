@@ -25,7 +25,7 @@ export default {
       resetPW: 'api/ui/password/update',
     },
     app: {
-      menu: '/api/sec/menus',
+      menu: '/api/menus',
     },
   },
 }

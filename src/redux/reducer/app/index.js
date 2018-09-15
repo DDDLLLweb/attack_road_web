@@ -1,16 +1,12 @@
 
-import { API_XSRF, STATE_PRINCIPAL,  API_LOGINOUT, STATE_MENU} from '../../action/app/';
+import { API_XSRF, STATE_PRINCIPAL, API_LOGINOUT, STATE_MENU} from '../../action/app/';
 
 const handleLogOut = (state) => {
     const { app } = state
     const newApp = Object.assign({},app,{user:null})
     return Object.assign({},state,newApp);
 }
-const handleGetMenuItem = (state,payload) => {
-    const {app} = state
-    const newApp = Object.assign({},app,{menu:{}})
-    return Object.assign({},state,newApp)
-} 
+
 const app = (state = {}, {type,payload}) => {
     switch (type) {
         case API_XSRF:

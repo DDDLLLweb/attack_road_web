@@ -2,12 +2,14 @@
  * Created by hao.cheng on 2017/4/14.
  */
 import React from 'react';
+import { DO_CAPTCHA } from '../../redux/action/login' ;
 import { DO_LOGIN } from '../../redux/action/app' ;
-import { networkUtils } from '../../utils';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Avatar, Form, Icon, Input, Button, Checkbox, Col, Row } from 'antd';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux'
+import b1 from '../../style/imgs/b1.jpg';
 import './index.less';
+import SnowStorm from 'react-snowstorm';
 
 const FormItem = Form.Item;
 
@@ -18,18 +20,16 @@ class LoginForm extends React.Component {
 
         }
     }
-    componentWillMount() {
-       
-    }
+
     componentDidMount() {
         const {app, dispatch} = this.props;
         const { user } = app;
         if(user) {
             dispatch(push('/app'));
         } else {
-            // networkUtils.csrf().then(function() {
-            //     console.log('get csrf');
-            // });
+            dispatch({
+                type: DO_CAPTCHA
+            })
         }
     }
     handleSubmit = (e) => {
@@ -37,47 +37,67 @@ class LoginForm extends React.Component {
         const {dispatch} = this.props;
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                // networkUtils.csrf().then(() => {
                     dispatch({
                         type: DO_LOGIN,
                         payload: values
                     })
-                // });
             }
         });
     };
 
     render() {
-        const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+        const { getFieldDecorator } = this.props.form;
+        const { captcha } = this.props.login
+        console.log('====',this.props,captcha)
         return (
-        <Form onSubmit={this.handleSubmit} className="loginForm">
-            <FormItem>
-                {getFieldDecorator('username', {
-                    rules: [{ required: true, message: '请输入用户名!' }],
-                })(
-                    <Input prefix={<Icon type="user" />} placeholder="用户名" />
-                )}
-            </FormItem>
-            <FormItem>
-                {getFieldDecorator('password', {
-                    rules: [{ required: true, message: '请输入密码!' }],
-                })(
-                    <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
-                )}
-            </FormItem>
-            <FormItem>
-                {getFieldDecorator('rememberMe', {
-                    valuePropName: 'checked',
-                    initialValue: true,
-                })(
-                    <Checkbox>记住我</Checkbox>
-                )}
-                <Button type="primary" htmlType="submit" className="login-form-button">
-                    登录
+            <div>
+            <SnowStorm />
+            <Form onSubmit={this.handleSubmit} className="loginForm">
+                <FormItem className="userphoto">
+                    <Avatar size="large" style={{ backgroundColor: '#fff' }} src={b1} />
+                </FormItem>
+                <FormItem>
+                    {getFieldDecorator('username', {
+                        rules: [{ required: true, message: '请输入用户名!' }],
+                    })(
+                        <Input prefix={<Icon type="user" />} placeholder="用户名" />
+                    )}
+                </FormItem>
+                <FormItem>
+                    {getFieldDecorator('password', {
+                        rules: [{ required: true, message: '请输入密码!' }],
+                    })(
+                        <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
+                    )}
+                </FormItem>
+                <FormItem>
+                    <Row gutter={8}>
+                        <Col span={12}>
+                            {getFieldDecorator('captcha', {
+                            rules: [{ required: true, message: '请输入验证码' }],
+                            })(
+                            <Input placeholder="验证码" />
+                            )}
+                        </Col>
+                        <Col span={12} style={{ height: 10 }}>
+                            <img src={captcha} alt="captcha" className="captcha" />
+                        </Col>
+                    </Row>
+                </FormItem>
+                <FormItem>
+                    {getFieldDecorator('rememberMe', {
+                        valuePropName: 'checked',
+                        initialValue: true,
+                    })(
+                        <Checkbox>记住我</Checkbox>
+                    )}
+                    <Button type="primary" htmlType="submit" className="login-form-button">
+                        登录
                     </Button>
-            </FormItem>
-        </Form>
+                </FormItem>
+            </Form>
+        </div>
     )
   }
 }
-export default connect(({ dispatch,app}) => ({ dispatch,app }))(Form.create()(LoginForm));
+export default connect(({ dispatch,app,login}) => ({ dispatch,app,login }))(Form.create()(LoginForm));
