@@ -77,6 +77,7 @@ const fetch = (options) => {
 
   try {
     let domain = ''
+    console.log('======',url)
     if (url.match(/[a-zA-z]+:\/\/[^/]*/)) {
       domain = url.match(/[a-zA-z]+:\/\/[^/]*/)[0]
       url = url.slice(domain.length)

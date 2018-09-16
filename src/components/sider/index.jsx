@@ -6,8 +6,8 @@ import { push } from 'react-router-redux'
 import {withRouter,Link} from "react-router-dom";
 
 const { api } = config;
-const { basic } = api;
-const { userMenu } = basic;
+const { app } = api;
+const { menus } = app;
 
 const SubMenu = Menu.SubMenu;
 class SiderMenu extends React.Component {
@@ -20,7 +20,7 @@ class SiderMenu extends React.Component {
     }
     componentDidMount = () => {
         networkUtils.request({
-            url: userMenu,
+            url: menus,
             method: 'get',
           }).then((data) => {
             if (data.success) {

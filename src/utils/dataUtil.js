@@ -135,7 +135,7 @@ const validAmtFormat = (n) => {
   }
 
   if (typeof n === 'string') {
-    if (!(/^-?\d*(\.\d+)?$/.test(n))) {  // check float
+    if (!(/^-?\d*(\.\d+)?$/.test(n))) { // check float
       return false
     } else {
       amt = parseFloat(n)
@@ -146,14 +146,14 @@ const validAmtFormat = (n) => {
 
   const patt = /^\s*-?\d+(\.\d{1,2})?\s*$/
 
-  if (!patt.test(amt)) {  // check tow decimal
+  if (!patt.test(amt)) { // check tow decimal
     return false
   }
   return true
 }
 
 const limitDecimals = value => {
-  const reg = /^(\-)*(\d+)\.(\d\d).*$/
+  const reg = /^(\\-)*(\d+)\.(\d\d).*$/
   if (typeof value === 'string') {
     return !isNaN(Number(value)) ? value.replace(reg, '$1$2.$3') : ''
   } else if (typeof value === 'number') {

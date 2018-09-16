@@ -45,10 +45,16 @@ class LoginForm extends React.Component {
         });
     };
 
+    changeCap = () =>{
+        const {dispatch} = this.props;
+        dispatch({
+            type: DO_CAPTCHA
+        })
+    };
+
     render() {
         const { getFieldDecorator } = this.props.form;
         const { captcha } = this.props.login
-        console.log('====',this.props,captcha)
         return (
             <div>
             <SnowStorm />
@@ -80,7 +86,7 @@ class LoginForm extends React.Component {
                             )}
                         </Col>
                         <Col span={12} style={{ height: 10 }}>
-                            <img src={captcha} alt="captcha" className="captcha" />
+                            <img src={captcha} alt="captcha" onClick={this.changeCap} className="captcha" />
                         </Col>
                     </Row>
                 </FormItem>

@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import { API_PRINCIPAL } from './redux/action/app' 
 import './App.less';
 import './style/index.less';
-import {HeaderCustom,MainContent,SiderMenu} from './components/';
-import { Redirect } from 'react-router-dom';
-import { Metaqtable } from './components/metactl/';
+import {HeaderCustom,SiderMenu} from './components/';
 import { routesNode,childRoutes } from './routes';
 const { Content, Footer ,Sider} = Layout;
 class App extends Component {
@@ -45,13 +43,7 @@ class App extends Component {
                 <Layout>
                 <HeaderCustom toggle={this.toggle} collapsed={this.state.collapsed} user={ {auth}|| {}} />
                 <Content style={{ margin: '0 16px' }}>
-                    
-                    <Redirect to="/app/dashboard" />
                     { routesNode }
-                    {/* <Switch> 
-                        <Route path="/app/dashboard" component={MainContent} />
-                        <Route path="/app/mqctl/metaq" component={ Metaqtable } /> 
-                     </Switch> */}
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
                     Ant Design ©2016 Created by Ant UED

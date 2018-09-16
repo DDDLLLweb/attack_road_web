@@ -2,9 +2,9 @@ import { config, networkUtils } from '../../utils';
 
 const { request } = networkUtils;
 const { api } = config;
-const { basic } = api;
-const { principal, userLogin,userLogout,userMenu } = basic
-
+const { basic,app } = api;
+const { principal, userLogin,userLogout } = basic;
+const { menus } = app;
 export async function getPrincipal() {
   return request({
     url: principal,
@@ -14,7 +14,7 @@ export async function getPrincipal() {
 export async function login(data) {
   return request({
     url: userLogin,
-    method: 'post',
+    method: 'form',
     data: data
   });
 }
@@ -27,8 +27,9 @@ export async function loginOut() {
 }
 
 export async function getMenuItem() {
+  console.log('=====',menus)
   return request({
-      url: userMenu,
+      url: menus,
       method:'get',
   })
 }
