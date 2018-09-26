@@ -27,7 +27,6 @@ export async function loginOut() {
 }
 
 export async function getMenuItem() {
-  console.log('=====',menus)
   return request({
       url: menus,
       method:'get',

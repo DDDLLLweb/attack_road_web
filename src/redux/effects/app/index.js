@@ -34,6 +34,7 @@ export function* doLoginOut() {
 export function* doGetMenu() {
   const data = yield call(appService.getMenuItem);
     if(data.success) {
+      console.log('+++++',data);
       yield put({
         type: STATE_MENU ,
         payload: { menu: data.data },

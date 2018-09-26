@@ -24,6 +24,7 @@ class SiderMenu extends React.Component {
             method: 'get',
           }).then((data) => {
             if (data.success) {
+                console.log(data);
                 dataUtil.arrayToTree(data.data)
                 let menuTree = dataUtil.arrayToTree(data.data.filter(_ => _.menuType !== 'C'), 'menuId', 'upperId')
                 this.setState({

@@ -56,7 +56,7 @@ const queryArray = (array, key, keyAlias = 'key') => {
  * @return  {Array}
  */
 const arrayToTree = (array, id = 'id', pid = 'pid', children = 'children') => {
-  let data = lodash.cloneDeep(array)
+  let data = lodash.cloneDeep(array) //看着像是深拷贝
   let result = []
   let hash = {}
   data.forEach((item, index) => {
