@@ -1,5 +1,5 @@
 import { createStore,combineReducers,compose,applyMiddleware } from 'redux';
-import { app, login } from './reducer/';
+import { app, login,metaq } from './reducer/';
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
@@ -15,6 +15,7 @@ const middleware = [sagaMiddleware, routerMiddleware(history)];
 const reducer = combineReducers({
     app,
     login,
+    metaq,
     router: routerReducer,
 });
 

@@ -25,6 +25,8 @@ export default {
     },
     app: {
       menus: '/api/menus',// 获取菜单
+
+      metaq: '/api/metaqs'
     },
   },
 }

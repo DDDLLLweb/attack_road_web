@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Divider, Tag ,Button } from 'antd';
-
-
-
+import { Table, Divider, Tag } from 'antd';
+import { DataTable } from '../../components';
+import { DO_LOAD_METAQ_DATA } from '../../redux/action/metaq'
 
 const columns = [{
   title: 'Name',
   dataIndex: 'name',
   key: 'name',
-  render: text => <a href="javascript:;">{text}</a>,
+  render: text => <a>{text}</a>,
 }, {
   title: 'Age',
   dataIndex: 'age',
@@ -32,9 +31,9 @@ const columns = [{
   key: 'action',
   render: (text, record) => (
     <span>
-      <a href="javascript:;">Invite {record.name}</a>
+      <a>Invite {record.name}</a>
       <Divider type="vertical" />
-      <a href="javascript:;">Delete</a>
+      <a>Delete</a>
     </span>
   ),
 }];
@@ -59,13 +58,20 @@ const data = [{
   tags: ['cool', 'teacher'],
 }];
 class Metaqtable extends React.Component{
-    // componentWillMount () {
-    //     const { dispatch } = this.props;
-    //     queryXsrf(dispatch);
-    // }
+    constructor(props) {
+      super(props);
+      this.state = {
+        dataSource: []
+      }
+    }
+    tableProps = {
+
+    }
+   
     render(){
+        const { dataSource } = this.state
         return (
-            <Table columns={columns} dataSource={data} />
+          <DataTable fetchAction={DO_LOAD_METAQ_DATA} dataSource={dataSource} tableProps={this.tableProps} />
         )
     }
     

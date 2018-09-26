@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { config,networkUtils, dataUtil } from '../../utils';
 import { Menu, Icon} from 'antd';
-import { push } from 'react-router-redux'
 import {withRouter,Link} from "react-router-dom";
 
 const { api } = config;
@@ -65,8 +64,6 @@ class SiderMenu extends React.Component {
     }
 
     handleClick = (e) => {
-        const {history} = this.props;
-        // history.push(e.key);
     }
 
     render() {

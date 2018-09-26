@@ -1,7 +1,5 @@
 import React,{Component} from 'react'
-import PropTypes from 'prop-types'
-import { Button, Checkbox, Col, Dropdown, Menu, Popconfirm, Row, Table } from 'antd'
-
+import { Table } from 'antd'
 
 class DataTable extends Component{
     constructor(props) {
@@ -33,11 +31,62 @@ class DataTable extends Component{
           colsSwitchVisible: false,
         }
       }
+      componentDidMount = () => {
+        const { filter } = this.props
+        const { fetchData, pagination } = this.state
+        let iniFilter = []
+        filter.forEach((f) => {
+          if (f.options && f.options.initialValue) {
+            iniFilter.push({
+              [f.dataIndex]: f.options.initialValue,
+            })
+          }
+        })
+        const newFetchData = Object.assign({}, fetchData, ...iniFilter)
+        this.setState({
+          fetchData: newFetchData,
+          pagination: pagination,
+        }, () => {
+          this.fetchList()
+        })
+      }
+
+      fetchList = () => {
+        const { fetchAction } = this.state
+        this.props.dispatch({
+          type: fetchAction,
+          payload: this.state.fetchData,
+        })
+      }
     
     render(){
+      const {
+        dataSource, loading, fetchAction,
+        enableSelection, enableDoubleClick, enablePagination, showReset,
+        onSelect, validToSelect, ...tableProps
+      } = this.props
+      const { pagination, columns } = this.state
+      const visibleColumns = columns.filter(c => c.visible !== false)
+      pagination.total = this.props.total
         return(
-            <div></div>
+          <div>
+          <Table
+            title={this.renderHeader}
+            ref={`DataTable`}
+            bordered
+            rowKey={'id'}
+            size="middle"
+            onChange={this.handleTableChange}
+            dataSource={dataSource}
+            pagination={enablePagination === false ? false : pagination}
+            onRowDoubleClick={enableDoubleClick === false ? () => {
+            } : this.handleRowDoubleClick}
+            {...tableProps}
+            columns={visibleColumns}
+          />
+          </div>
         )
     }
 }
-export {DataTable}
+
+export default DataTable

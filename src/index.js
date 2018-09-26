@@ -8,7 +8,6 @@ import LoginForm from './containers/login/';
 import App from './App';
 // import { MainContent } from './components/';
 import { networkUtils } from './utils';
-import { routesNode ,childRoutes } from './routes';
 
 const store = configureStore();
 
