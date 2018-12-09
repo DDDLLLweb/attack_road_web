@@ -7,5 +7,5 @@ export {
   config,
   networkUtils,
   stringUtil,
-  dataUtil
+  dataUtil,
 }

@@ -100,14 +100,14 @@ const option = {
     },
     animationDelayUpdate: function (idx) {
         return idx * 20;
-    }
-};
+  }
+}
 const EchartsProjects = () => (
-    <ReactEcharts
-        option={option}
-        style={{height: '212px', width: '100%'}}
-        className={'react_for_echarts'}
-    />
-);
+  <ReactEcharts
+    option={option}
+    style={{height: '212px', width: '100%'}}
+    className={'react_for_echarts'}
+  />
+)
 
-export default EchartsProjects;
+export default EchartsProjects

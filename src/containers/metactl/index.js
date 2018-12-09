@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Divider, Tag } from 'antd';
+import { Divider, Tag } from 'antd';
 import { DataTable } from '../../components';
 import { DO_LOAD_METAQ_DATA } from '../../redux/action/metaq'
 
